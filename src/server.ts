@@ -78,8 +78,6 @@ async function setup(event: APIGatewayProxyEvent, context: Context) {
 }
 
 export async function handler(event: APIGatewayProxyEvent, context: Context) {
-  //logs the env varibales for debug purpose
-  console.log("VARIABLES", JSON.stringify(process.env, null, 2));
   if (serverlessExpressInstance)
     return serverlessExpressInstance(event, context);
   return await setup(event, context);

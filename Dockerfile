@@ -25,6 +25,7 @@ COPY ./server.js .
 
 # Install Node.js dependencies
 RUN npm install
+RUN npm install npx
 
 # Install the runtime interface client
 RUN npm install aws-lambda-ric
