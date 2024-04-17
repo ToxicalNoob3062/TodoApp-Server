@@ -1,0 +1,30 @@
+- httpApi:
+    path: /v1/todos
+    method: get
+- httpApi:
+    path: /v1/todos
+    method: post
+- httpApi:
+    path: /v1/todos/:id
+    method: put
+- httpApi:
+    path: /v1/todos/:id
+    method: delete
+- httpApi:
+    path: /v1/users/register
+    method: post
+- httpApi:
+    path: /v1/users/login
+    method: post
+- httpApi:
+    path: /v1/users/logout
+    method: get
+- httpApi:
+    path: /v1/users/session
+    method: get
+- httpApi:
+    path: /v1/users/unregister
+    method: delete
+- httpApi:
+    path: /
+    method: get

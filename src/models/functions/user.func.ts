@@ -1,9 +1,8 @@
-//These functions are used to perform CRUD operations on the user collection of mongodb directly
-
-import { UserLoginDTO } from "../../dtos/user.dto";
+import * as bcryptjs from "bcryptjs";
 import userSchema from "../schemas/user.schema";
-import bcryptjs from "bcryptjs";
+import { UserLoginDTO } from "../../dtos/user.dto";
 
+//These functions are used to perform CRUD operations on the user collection of mongodb directly
 export default class UserFunctions {
   private userCollection = userSchema;
 

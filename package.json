@@ -3,33 +3,44 @@
   "module": "src/server.ts",
   "type": "module",
   "scripts": {
-    "start": "node run src/server.ts",
-    "startWithBun": "bun run src/server.ts",
-    "build": "tsc -p .",
+    "dev": "bun run mongo-start && bun run src/server.ts",
+    "start": "bun run build && bun run mongo-start && node server.js",
+    "deploy": "bun run build && serverless deploy",
+    "build": "bun run gen-routes && bun build src/server.ts --outfile server.js --target=node",
+    "build-img": "docker build -t chaingurd:latest .",
+    "postbuild": "echo \"$(echo 'import { createRequire as createImportMetaRequire } from \"module\"; import.meta.require ||= (id) => createImportMetaRequire(import.meta.url)(id);' && cat server.js)\" > server.js",
+    "gen-routes": "bun run src/server.ts gen",
     "mongo-start": "docker-compose up -d",
     "mongo-stop": "docker-compose down"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
     "@types/cookie-parser": "^1.4.6",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/js-yaml": "^4.0.9",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/morgan": "^1.9.9",
-    "bun-types": "latest"
+    "@types/aws-lambda": "^8.10.137",
+    "bun-types": "latest",
+    "express-list-endpoints": "^7.1.0",
+    "js-yaml": "^4.1.0",
+    "serverless-offline": "^13.3.3"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@codegenie/serverless-express": "^4.14.0",
+    "aws-lambda": "^1.0.7",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
     "morgan": "^1.10.0",
-    "dotenv": "^16.3.1"
+    "typescript": "^5.4.5"
   }
 }

@@ -1,7 +1,7 @@
-//we will use jwt to store our login session in client so that user dont need to login again and again
 import jwt from "jsonwebtoken";
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import { UserSessionDTO } from "../dtos/user.dto";
+//we will use jwt to store our login session in client so that user dont need to login again and again
 
 //this class handles all the session related middlewares and functionality
 class SessionMiddlewares {
@@ -39,7 +39,6 @@ class SessionMiddlewares {
   //clear jwt from cookies (clear session)
   clearJWT(res: Response) {
     res.clearCookie("user");
-    res.json({ message: "Logout successful" });
   }
 }
 

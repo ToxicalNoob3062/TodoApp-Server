@@ -21,6 +21,7 @@ export default class UserController {
         });
       }
     } catch (err) {
+      console.log("ERROR: ", err);
       res.status(500).json({
         message: (err as Error).message,
       });
@@ -37,6 +38,7 @@ export default class UserController {
         message: "User signed in!!",
       });
     } catch (err) {
+      console.log("ERROR: ", err);
       res.status(500).json({
         message: (err as Error).message,
       });
@@ -58,6 +60,7 @@ export default class UserController {
         message: "User unregistered!!",
       });
     } catch (err) {
+      console.log("ERROR: ", err);
       res.status(500).json({
         message: (err as Error).message,
       });
@@ -65,8 +68,11 @@ export default class UserController {
   }
 
   //logout user by clearing jwt from cookies
-  logoutUser(req: Request, res: Response) {
+  async logoutUser(req: Request, res: Response) {
     //clear jwt from cookies
     sessionMiddlewares.clearJWT(res);
+    res.status(200).json({
+      message: "User logged out!!",
+    });
   }
 }

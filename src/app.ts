@@ -1,11 +1,11 @@
-import express from "express";
-import cors from "cors";
-import morgan from "morgan";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+import express from "express";
+import morgan from "morgan";
+import v1 from "./versions/api.version1";
 
 //versions
-import v1 from "./versions/api.version1";
 
 //express app server
 const app = express();
@@ -29,6 +29,9 @@ app.use(cookieParser());
 
 //we are using the version 1 (v1 router) of our api which has the user and todo routers
 app.use("/v1", v1);
+app.get("/", (req, res) => {
+  res.send("Hello From Lambda!");
+});
 
 //exporting app to be used by our server
 export default app;

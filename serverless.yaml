@@ -1,0 +1,18 @@
+# serverless.yml
+service: todo-api
+provider:
+  region: ca-central-1
+  name: aws
+  stage: prod
+  ecr:
+    images:
+      todo-api:
+        path: ./
+  environment: ${file(env.yaml)}
+functions:
+  todoApp:
+    image:
+      name: todo-api
+    events: ${file(events.yaml)}
+plugins:
+  - serverless-offline
