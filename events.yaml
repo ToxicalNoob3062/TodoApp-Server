@@ -5,10 +5,10 @@
     path: /v1/todos
     method: post
 - httpApi:
-    path: /v1/todos/:id
+    path: /v1/todos/{id}
     method: put
 - httpApi:
-    path: /v1/todos/:id
+    path: /v1/todos/{id}
     method: delete
 - httpApi:
     path: /v1/users/register

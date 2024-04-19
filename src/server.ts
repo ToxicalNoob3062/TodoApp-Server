@@ -18,14 +18,16 @@ const server = http.createServer(app); //using our app instance to create a serv
 //produce iac
 function populateApiEvents(app: Express) {
   const routes = fetchRoutes(app);
-  const yamlData = routes.flatMap((route) =>
-    route.methods.map((method) => ({
+  const yamlData = routes.flatMap((route) => {
+    const whole = route.path.split(":");
+    let path = whole[0];
+    return route.methods.map((method) => ({
       httpApi: {
-        path: route.path,
+        path: whole.length > 1 ? path + `{${whole[1]}}` : path,
         method: method.toLowerCase(),
       },
-    }))
-  );
+    }));
+  });
   fs.writeFileSync("events.yaml", yaml.dump(yamlData));
 }
 
